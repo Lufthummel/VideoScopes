@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = VideoScopesPCClient1.0.0
-DISTDIR = /Users/serge-olivieramega/Developer/2016/VideoScopesPCClient/build-VideoScopesPCClient-Desktop_Qt_5_5_1_clang_64bit-Debug/.tmp/VideoScopesPCClient1.0.0
+DISTDIR = /Users/serge-olivieramega/Developer/2016/VideoScopes/build-VideoScopesPCClient-Desktop_Qt_5_5_1_clang_64bit-Debug/.tmp/VideoScopesPCClient1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wl,-rpath,/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtNetwork -framework OpenGL -framework AGL 
@@ -180,7 +180,6 @@ DIST          = ../../../../Applications/Qt/5.5/clang_64/mkspecs/features/spec_p
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/spec_post.prf \
-		../VideoScopesPCClient/.qmake.stash \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/default_pre.prf \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -368,7 +367,6 @@ Makefile: ../VideoScopesPCClient/VideoScopesPCClient.pro ../../../../Application
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/default_pre.prf \
 		../../../../Applications/Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -518,7 +516,6 @@ Makefile: ../VideoScopesPCClient/VideoScopesPCClient.pro ../../../../Application
 ../../../../Applications/Qt/5.5/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Applications/Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Applications/Qt/5.5/clang_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 ../../../../Applications/Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Applications/Qt/5.5/clang_64/mkspecs/features/default_pre.prf:
 ../../../../Applications/Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf:
@@ -618,15 +615,90 @@ moc_mainwindow.cpp: ../../../../Applications/Qt/5.5/clang_64/lib/QtWidgets.frame
 		../../../../Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../VideoScopesPCClient/imagesender.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/QImage \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/qimage.h \
 		../VideoScopesPCClient/mainwindow.h
-	/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/serge-olivieramega/Developer/2016/VideoScopesPCClient/VideoScopesPCClient -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib ../VideoScopesPCClient/mainwindow.h -o moc_mainwindow.cpp
+	/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/serge-olivieramega/Developer/2016/VideoScopes/VideoScopesPCClient -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib ../VideoScopesPCClient/mainwindow.h -o moc_mainwindow.cpp
 
 moc_imagesender.cpp: ../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/QObject \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/QImage \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/qimage.h \
 		../VideoScopesPCClient/imagesender.h
-	/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/serge-olivieramega/Developer/2016/VideoScopesPCClient/VideoScopesPCClient -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib ../VideoScopesPCClient/imagesender.h -o moc_imagesender.cpp
+	/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/serge-olivieramega/Developer/2016/VideoScopes/VideoScopesPCClient -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers -I/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/serge-olivieramega/Applications/Qt/5.5/clang_64/lib ../VideoScopesPCClient/imagesender.h -o moc_imagesender.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -655,6 +727,46 @@ main.o: ../VideoScopesPCClient/main.cpp ../VideoScopesPCClient/mainwindow.h \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../VideoScopesPCClient/imagesender.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/QImage \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/qimage.h \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../VideoScopesPCClient/main.cpp
@@ -668,14 +780,89 @@ mainwindow.o: ../VideoScopesPCClient/mainwindow.cpp ../../../../Applications/Qt/
 		../../../../Applications/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../VideoScopesPCClient/imagesender.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/QImage \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/qimage.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../VideoScopesPCClient/mainwindow.cpp
 
 imagesender.o: ../VideoScopesPCClient/imagesender.cpp ../VideoScopesPCClient/imagesender.h \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/QObject \
 		../../../../Applications/Qt/5.5/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/QTcpSocket \
-		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhttpmultipart.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookie.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkcookiejar.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkdiskcache.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfigmanager.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworksession.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qdnslookup.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostaddress.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qhostinfo.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkinterface.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qnetworkproxy.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalserver.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qlocalsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpserver.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qudpsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qssl.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcertificateextension.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslcipher.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslellipticcurve.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslerror.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslkey.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qsslsocket.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtNetwork.framework/Headers/qtnetworkversion.h \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/QImage \
+		../../../../Applications/Qt/5.5/clang_64/lib/QtGui.framework/Headers/qimage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o imagesender.o ../VideoScopesPCClient/imagesender.cpp
 
 qrc_mainresources.o: qrc_mainresources.cpp 
