@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var scopeView: ScopeView!
     @IBOutlet weak var ipTextField: UITextField!
-    @IBOutlet weak var imageView: UIImageView!
     var imageReciever = ImageReciever()
 
     override func viewDidLoad() {
@@ -19,11 +19,11 @@ class ViewController: UIViewController {
         
         ipTextField.text = ""
         
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
         imageReciever.updateImg = {(img : UIImage) in
             print("updating.")
             dispatch_async(dispatch_get_main_queue()) {
-                self.imageView.image = img
+                self.scopeView.updateImage(img)
+                print(self.scopeView.frame)
             }
         }
     }

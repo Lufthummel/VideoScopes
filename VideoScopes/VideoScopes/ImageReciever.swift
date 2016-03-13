@@ -14,6 +14,8 @@ class ImageReciever: NSObject, NSStreamDelegate {
     var updateImg : ((UIImage) -> Void)?
     
     func connectTo(host : String, port : Int) {
+        print("attempting to connect to \(host):\(port)")
+        
         NSStream.getStreamsToHostWithName(host, port: port, inputStream: &iStream, outputStream: &oStream)
         
         if (iStream != nil && oStream != nil) {

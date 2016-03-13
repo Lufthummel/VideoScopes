@@ -17,9 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oMw-pC-QZN">
-                                <rect key="frame" x="20" y="20" width="560" height="534"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mfd-0e-mcn">
                                 <rect key="frame" x="20" y="562" width="506" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -32,24 +29,27 @@
                                     <action selector="connect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gOC-Cu-yWy"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kWf-A8-Unz" customClass="ScopeView" customModule="VideoScopes" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="560" height="534"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="mfd-0e-mcn" firstAttribute="top" secondItem="kWf-A8-Unz" secondAttribute="bottom" constant="8" id="8vR-75-Jos"/>
                             <constraint firstAttribute="trailingMargin" secondItem="68A-YJ-2Su" secondAttribute="trailing" id="Bhk-gw-dPb"/>
                             <constraint firstItem="68A-YJ-2Su" firstAttribute="leading" secondItem="mfd-0e-mcn" secondAttribute="trailing" constant="8" id="C74-mR-JLi"/>
-                            <constraint firstItem="mfd-0e-mcn" firstAttribute="top" secondItem="oMw-pC-QZN" secondAttribute="bottom" constant="8" id="LYc-Fw-oMl"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="kWf-A8-Unz" secondAttribute="leading" id="END-RG-ZTk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="68A-YJ-2Su" secondAttribute="bottom" constant="8" id="MC4-2x-n48"/>
-                            <constraint firstItem="oMw-pC-QZN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ODv-27-xcW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mfd-0e-mcn" secondAttribute="bottom" constant="8" id="TTP-fD-QhW"/>
-                            <constraint firstItem="oMw-pC-QZN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ZPN-Ht-k9t"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kWf-A8-Unz" secondAttribute="trailing" id="ZEs-vK-sZA"/>
                             <constraint firstItem="mfd-0e-mcn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fEm-hq-mcF"/>
-                            <constraint firstItem="oMw-pC-QZN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="fp2-i4-SFx"/>
-                            <constraint firstItem="68A-YJ-2Su" firstAttribute="top" secondItem="oMw-pC-QZN" secondAttribute="bottom" constant="8" id="zl3-nK-UTt"/>
+                            <constraint firstItem="kWf-A8-Unz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="r9M-rw-Ab2"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="oMw-pC-QZN" id="uvD-EH-KUs"/>
                         <outlet property="ipTextField" destination="mfd-0e-mcn" id="pDG-jd-ziR"/>
+                        <outlet property="scopeView" destination="kWf-A8-Unz" id="Qcw-Az-dNP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -13,6 +13,9 @@
 		CC10C13A1C93D512001B326C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC10C1391C93D512001B326C /* Assets.xcassets */; };
 		CC10C13D1C93D512001B326C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC10C13B1C93D512001B326C /* LaunchScreen.storyboard */; };
 		CC10C1451C93D51D001B326C /* ImageReciever.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC10C1441C93D51C001B326C /* ImageReciever.swift */; };
+		CC48C6941C94FC30009F4B45 /* ScopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48C6931C94FC30009F4B45 /* ScopeView.swift */; };
+		CC48C6971C94FC7F009F4B45 /* VisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48C6961C94FC7F009F4B45 /* VisualizerView.swift */; };
+		CC48C6991C94FCAF009F4B45 /* ScopeProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48C6981C94FCAF009F4B45 /* ScopeProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		CC10C13C1C93D512001B326C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC10C13E1C93D512001B326C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC10C1441C93D51C001B326C /* ImageReciever.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageReciever.swift; sourceTree = "<group>"; };
+		CC48C6931C94FC30009F4B45 /* ScopeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeView.swift; sourceTree = "<group>"; };
+		CC48C6961C94FC7F009F4B45 /* VisualizerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualizerView.swift; sourceTree = "<group>"; };
+		CC48C6981C94FCAF009F4B45 /* ScopeProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			children = (
 				CC10C1321C93D512001B326C /* AppDelegate.swift */,
 				CC10C1341C93D512001B326C /* ViewController.swift */,
+				CC48C6951C94FC3A009F4B45 /* ScopeViewUI */,
 				CC10C1441C93D51C001B326C /* ImageReciever.swift */,
 				CC10C1361C93D512001B326C /* Main.storyboard */,
 				CC10C1391C93D512001B326C /* Assets.xcassets */,
@@ -65,6 +72,16 @@
 				CC10C13E1C93D512001B326C /* Info.plist */,
 			);
 			path = VideoScopes;
+			sourceTree = "<group>";
+		};
+		CC48C6951C94FC3A009F4B45 /* ScopeViewUI */ = {
+			isa = PBXGroup;
+			children = (
+				CC48C6981C94FCAF009F4B45 /* ScopeProcessor.swift */,
+				CC48C6931C94FC30009F4B45 /* ScopeView.swift */,
+				CC48C6961C94FC7F009F4B45 /* VisualizerView.swift */,
+			);
+			name = ScopeViewUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC48C6971C94FC7F009F4B45 /* VisualizerView.swift in Sources */,
 				CC10C1451C93D51D001B326C /* ImageReciever.swift in Sources */,
 				CC10C1351C93D512001B326C /* ViewController.swift in Sources */,
+				CC48C6991C94FCAF009F4B45 /* ScopeProcessor.swift in Sources */,
 				CC10C1331C93D512001B326C /* AppDelegate.swift in Sources */,
+				CC48C6941C94FC30009F4B45 /* ScopeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +312,7 @@
 				CC10C1431C93D512001B326C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
