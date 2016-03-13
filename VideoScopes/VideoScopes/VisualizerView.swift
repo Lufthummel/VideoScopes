@@ -23,15 +23,10 @@ class VisualizerView: UIView {
         
         addSubview(imageView)
         
-        print("asd")
-        
         imageView.centerXAnchor.constraintEqualToAnchor(centerXAnchor).active = true
         imageView.centerYAnchor.constraintEqualToAnchor(centerYAnchor).active = true
         imageView.widthAnchor.constraintEqualToAnchor(widthAnchor).active = true
         imageView.heightAnchor.constraintEqualToAnchor(heightAnchor).active = true
-        
-        
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +34,6 @@ class VisualizerView: UIView {
     }
     
     func display(image : UIImage) {
-        print("SET===")
         imageView.image = image
     }
 

@@ -16,6 +16,7 @@
 		CC48C6941C94FC30009F4B45 /* ScopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48C6931C94FC30009F4B45 /* ScopeView.swift */; };
 		CC48C6971C94FC7F009F4B45 /* VisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48C6961C94FC7F009F4B45 /* VisualizerView.swift */; };
 		CC48C6991C94FCAF009F4B45 /* ScopeProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48C6981C94FCAF009F4B45 /* ScopeProcessor.swift */; };
+		CC48C69B1C952BF4009F4B45 /* scopes.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = CC48C69A1C952BF4009F4B45 /* scopes.cikernel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CC48C6931C94FC30009F4B45 /* ScopeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeView.swift; sourceTree = "<group>"; };
 		CC48C6961C94FC7F009F4B45 /* VisualizerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualizerView.swift; sourceTree = "<group>"; };
 		CC48C6981C94FCAF009F4B45 /* ScopeProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeProcessor.swift; sourceTree = "<group>"; };
+		CC48C69A1C952BF4009F4B45 /* scopes.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scopes.cikernel; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				CC48C6981C94FCAF009F4B45 /* ScopeProcessor.swift */,
+				CC48C69A1C952BF4009F4B45 /* scopes.cikernel */,
 				CC48C6931C94FC30009F4B45 /* ScopeView.swift */,
 				CC48C6961C94FC7F009F4B45 /* VisualizerView.swift */,
 			);
@@ -145,6 +148,7 @@
 				CC10C13D1C93D512001B326C /* LaunchScreen.storyboard in Resources */,
 				CC10C13A1C93D512001B326C /* Assets.xcassets in Resources */,
 				CC10C1381C93D512001B326C /* Main.storyboard in Resources */,
+				CC48C69B1C952BF4009F4B45 /* scopes.cikernel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

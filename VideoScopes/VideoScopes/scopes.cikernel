@@ -1,0 +1,5 @@
+
+kernel vec4 histogramKernel(sampler src, float zoomFactor)
+{
+    
+}

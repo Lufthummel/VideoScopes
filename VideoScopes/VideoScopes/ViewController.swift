@@ -23,7 +23,6 @@ class ViewController: UIViewController {
             print("updating.")
             dispatch_async(dispatch_get_main_queue()) {
                 self.scopeView.updateImage(img)
-                print(self.scopeView.frame)
             }
         }
     }

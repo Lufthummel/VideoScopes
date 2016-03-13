@@ -11,7 +11,13 @@ import UIKit
 class ScopeView: UIView {
     var visualizerView : VisualizerView?
     var buttonView : ButtonView?
-    var processor : ScopeProcessor?
+    var processor : ScopeProcessor = ScopeProcessor()
+    var parameters : [String : Int] = [:]
+    var scopeMode : ScopeMode {
+        get {
+            return processor.mode
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,14 +43,13 @@ class ScopeView: UIView {
         visualizerView?.heightAnchor.constraintEqualToAnchor(heightAnchor).active = true
         
         buttonView = ButtonView()
-        processor = ScopeProcessor.getScopeProcessor(ScopeProcessorType.Histogram)
+        processor = ScopeProcessor.getScopeProcessor(ScopeMode.Histogram)
         self.backgroundColor = UIColor.blackColor()
     }
     
     func updateImage(image : UIImage) {
-        if let scopeImg = processor?.getScopeImage(image) {
-            visualizerView?.display(scopeImg)
-        }
+        let scopeImg = processor.getScopeImage(image, params: [:])
+        visualizerView?.display(scopeImg)
     }
     
     /*
