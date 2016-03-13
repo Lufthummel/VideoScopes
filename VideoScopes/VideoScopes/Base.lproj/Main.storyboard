@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VideoScopes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oMw-pC-QZN">
+                                <rect key="frame" x="20" y="20" width="560" height="534"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mfd-0e-mcn">
+                                <rect key="frame" x="20" y="562" width="506" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68A-YJ-2Su">
+                                <rect key="frame" x="534" y="562" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="connect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gOC-Cu-yWy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="68A-YJ-2Su" secondAttribute="trailing" id="Bhk-gw-dPb"/>
+                            <constraint firstItem="68A-YJ-2Su" firstAttribute="leading" secondItem="mfd-0e-mcn" secondAttribute="trailing" constant="8" id="C74-mR-JLi"/>
+                            <constraint firstItem="mfd-0e-mcn" firstAttribute="top" secondItem="oMw-pC-QZN" secondAttribute="bottom" constant="8" id="LYc-Fw-oMl"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="68A-YJ-2Su" secondAttribute="bottom" constant="8" id="MC4-2x-n48"/>
+                            <constraint firstItem="oMw-pC-QZN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ODv-27-xcW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mfd-0e-mcn" secondAttribute="bottom" constant="8" id="TTP-fD-QhW"/>
+                            <constraint firstItem="oMw-pC-QZN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ZPN-Ht-k9t"/>
+                            <constraint firstItem="mfd-0e-mcn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fEm-hq-mcF"/>
+                            <constraint firstItem="oMw-pC-QZN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="fp2-i4-SFx"/>
+                            <constraint firstItem="68A-YJ-2Su" firstAttribute="top" secondItem="oMw-pC-QZN" secondAttribute="bottom" constant="8" id="zl3-nK-UTt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="oMw-pC-QZN" id="uvD-EH-KUs"/>
+                        <outlet property="ipTextField" destination="mfd-0e-mcn" id="pDG-jd-ziR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="297"/>
+        </scene>
+    </scenes>
+</document>
