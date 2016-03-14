@@ -60,7 +60,7 @@ void MainWindow::startStream()
     std::cout << "starting stream." << std::endl;
 
     connect(timer,SIGNAL(timeout()), this, SLOT(captureShot()));
-    timer->start(2000);
+    timer->start(1000);
 }
 
 void MainWindow::stopStream()

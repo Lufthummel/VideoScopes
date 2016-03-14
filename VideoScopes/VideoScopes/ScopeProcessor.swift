@@ -9,7 +9,7 @@
 import UIKit
 
 enum ScopeMode {
-    case Abstract,Histogram,Waveform
+    case Abstract, Histogram, Waveform, Vectorscope
 }
 
 enum ColorChannel : UInt8 {
@@ -28,6 +28,8 @@ class ScopeProcessor: NSObject {
             return HistogramProcessor()
         case .Waveform :
             return WaveformProcesor()
+        case .Vectorscope :
+            return VectorscopeProcessor()
         case _:
             return ScopeProcessor()
         }
@@ -39,6 +41,61 @@ class ScopeProcessor: NSObject {
     
     func getScopeImage(image : UIImage, params : [String:Int]) -> UIImage {
         return image
+    }
+}
+
+private class VectorscopeProcessor : ScopeProcessor {
+    var destWidth : Int = 800
+    var destHeight : Int = 600
+    
+    private override func getScopeImage(image: UIImage, params: [String : Int]) -> UIImage {
+        guard let cgImg = image.CGImage else {
+            return image
+        }
+        let scopeImg = drawVectorscope(cgImg)
+        return UIImage(CGImage: scopeImg )
+    }
+    
+    private func drawVectorscope(cgImg: CGImage) -> CGImage {
+        let srcWidth = CGImageGetWidth(cgImg)
+        let srcHeight = CGImageGetHeight(cgImg)
+        let bytesPerPixel = 4
+        var bytesPerRow = bytesPerPixel * srcWidth
+        let bitsPerComponent = 8
+        
+        let srcPixels = Array<UInt32>(count: srcWidth * srcHeight, repeatedValue: 0)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let srcContext = CGBitmapContextCreate(UnsafeMutablePointer(srcPixels), srcWidth, srcHeight, bitsPerComponent, bytesPerRow,
+            colorSpace, CGBitmapInfo.ByteOrder32Big.rawValue | CGImageAlphaInfo.PremultipliedLast.rawValue)
+        
+        CGContextDrawImage(srcContext, CGRect(x: 0, y: 0, width: srcWidth, height: srcHeight), cgImg)
+        
+        bytesPerRow = bytesPerPixel * destWidth
+        var destPixels = Array<UInt32>(count: destWidth * destHeight, repeatedValue: 0)
+        let destContext = CGBitmapContextCreate(UnsafeMutablePointer(destPixels), destWidth, destHeight, bitsPerComponent, bytesPerRow,
+            colorSpace, CGBitmapInfo.ByteOrder32Big.rawValue | CGImageAlphaInfo.PremultipliedLast.rawValue)
+        
+        let scopeIntensity : UInt32 = 30
+        let pxCount = srcPixels.count
+        
+        for var i = 0; i < pxCount; i++ {
+            let px = srcPixels[i]
+            let r = Float( px % 256 ) / 256.0
+            let g = Float( (px >> 8) % 256 ) / 256.0
+            let b = Float( (px >> 16) % 256 ) / 256.0
+            
+            //[-.5,.5]
+            let pb = -0.168736*r - 0.331264*g + 0.5*b
+            let pr = 0.5*r - 0.418688*g - 0.081312*b
+            
+            let x_index = Int( Float(destWidth) * (pb+0.5)   )
+            let y_index = Int( Float(destHeight) * (-pr+0.5) )
+            
+            destPixels[y_index*destWidth+x_index] = 0xff_ff_ff_ff
+        }
+        
+        let resultImage = CGBitmapContextCreateImage(destContext)
+        return resultImage!
     }
 }
 

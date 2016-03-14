@@ -43,7 +43,7 @@ class ScopeView: UIView {
         visualizerView?.heightAnchor.constraintEqualToAnchor(heightAnchor).active = true
         
         buttonView = ButtonView()
-        processor = ScopeProcessor.getScopeProcessor(ScopeMode.Waveform)
+        processor = ScopeProcessor.getScopeProcessor(ScopeMode.Vectorscope)
         self.backgroundColor = UIColor.blackColor()
     }
     
