@@ -33,7 +33,7 @@ class VisualizerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func display(image : UIImage) {
+    func display(image : UIImage, params : ParameterMap) {
         imageView.image = image
     }
 

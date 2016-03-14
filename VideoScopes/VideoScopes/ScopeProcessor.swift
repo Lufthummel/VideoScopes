@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum ScopeMode {
+enum ScopeMode : UInt8 {
     case Abstract, Histogram, Waveform, Vectorscope
 }
 
 enum ColorChannel : UInt8 {
-    case Red, Green, Blue, Alpha, Luma
+    case Red, Green, Blue, Luma
 }
 
 class ScopeProcessor: NSObject {
