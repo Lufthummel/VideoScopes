@@ -9,7 +9,7 @@
 import UIKit
 
 enum ScopeMode {
-    case Abstract,Histogram
+    case Abstract,Histogram,Waveform
 }
 
 enum ColorChannel : UInt8 {
@@ -26,6 +26,8 @@ class ScopeProcessor: NSObject {
         switch mode {
         case .Histogram :
             return HistogramProcessor()
+        case .Waveform :
+            return WaveformProcesor()
         case _:
             return ScopeProcessor()
         }
@@ -37,6 +39,115 @@ class ScopeProcessor: NSObject {
     
     func getScopeImage(image : UIImage, params : [String:Int]) -> UIImage {
         return image
+    }
+}
+
+private class WaveformProcesor: ScopeProcessor {
+    
+    var destWidth : Int = 800
+    var destHeight : Int = 600
+    
+    private override func getScopeImage(image: UIImage, params: [String : Int]) -> UIImage {
+        
+        guard let cgImg = image.CGImage else {
+            return UIImage()
+        }
+        
+        let resImg = readAndDrawWaveform(cgImg, channels: [.Red,.Green,.Blue])
+        return UIImage(CGImage: resImg)
+    }
+    
+    private func readAndDrawWaveform(cgImg : CGImage, channels : [ColorChannel]) -> CGImage {
+        
+        var (rRed,rGreen,rBlue,rLuma) = (false,false,false,false)
+        for channel in channels {
+            switch channel {
+            case .Red:
+                rRed = true
+            case .Green:
+                rGreen = true
+            case .Blue:
+                rBlue = true
+            case .Luma:
+                rLuma = true
+            default:
+                true
+            }
+        }
+        
+        let sourceWidth = CGImageGetWidth(cgImg)
+        let sourceHeight = CGImageGetWidth(cgImg)
+        let bytesPerPixel = 4
+        var bytesPerRow = bytesPerPixel * sourceWidth
+        let bitsPerComponent = 8
+        
+        let sourcePixels = Array<UInt32>(count: sourceWidth * sourceHeight, repeatedValue: 0)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let sourceContext = CGBitmapContextCreate(UnsafeMutablePointer(sourcePixels), sourceWidth, sourceHeight, bitsPerComponent, bytesPerRow,
+            colorSpace, CGBitmapInfo.ByteOrder32Big.rawValue | CGImageAlphaInfo.PremultipliedLast.rawValue)
+        
+        CGContextDrawImage(sourceContext, CGRect(x: 0, y: 0, width: sourceWidth, height: sourceHeight), cgImg)
+        
+        bytesPerRow = bytesPerPixel * destWidth
+        var destPixels = Array<UInt32>(count: destWidth * destHeight, repeatedValue: 0)
+        let destContext = CGBitmapContextCreate(UnsafeMutablePointer(destPixels), destWidth, destHeight, bitsPerComponent, bytesPerRow, colorSpace,
+            CGBitmapInfo.ByteOrder32Big.rawValue | CGImageAlphaInfo.PremultipliedLast.rawValue)
+        
+        let scopeIntensity : UInt32 = 30
+        
+        //red
+        if rRed {
+            for var i = 0; i < sourceWidth; i++ {
+                let destX = Int(Float(i)/Float(sourceWidth)*Float(destWidth))
+                for var j = 0; j < sourceHeight; j++ {
+                    let redValue = (sourcePixels[j*sourceWidth+i] % 256) // [0,255]
+                    let destIndex = (destHeight-1-Int(redValue))*destWidth + destX
+                    
+                    var destRedVal = destPixels[destIndex] % 256
+                    destRedVal = min(destRedVal + scopeIntensity, 255)
+                    
+                    destPixels[destIndex] = destPixels[destIndex] & 0xff_ff_ff_00
+                    destPixels[destIndex] = destPixels[destIndex] | destRedVal
+                }
+            }
+        }
+        
+        //green
+        if rGreen {
+            for var i = 0; i < sourceWidth; i++ {
+                let destX = Int(Float(i)/Float(sourceWidth)*Float(destWidth))
+                for var j = 0; j < sourceHeight; j++ {
+                    let greenValue = ((sourcePixels[j*sourceWidth+i] >> 8) % 256) // [0,255]
+                    let destIndex = (destHeight-1-Int(greenValue))*destWidth + destX
+                    
+                    var destGreenVal = (destPixels[destIndex] >> 8) % 256
+                    destGreenVal = min(destGreenVal + scopeIntensity, 255)
+                    
+                    destPixels[destIndex] = destPixels[destIndex] & 0xff_ff_00_ff
+                    destPixels[destIndex] = destPixels[destIndex] | (destGreenVal << 8)
+                }
+            }
+        }
+        
+        //blue
+        if rBlue {
+            for var i = 0; i < sourceWidth; i++ {
+                let destX = Int(Float(i)/Float(sourceWidth)*Float(destWidth))
+                for var j = 0; j < sourceHeight; j++ {
+                    let blueValue = ((sourcePixels[j*sourceWidth+i] >> 16) % 256) // [0,255]
+                    let destIndex = (destHeight-1-Int(blueValue))*destWidth + destX
+                    
+                    var destBlueVal = (destPixels[destIndex] >> 16) % 256
+                    destBlueVal = min(destBlueVal + scopeIntensity, 255)
+                    
+                    destPixels[destIndex] = destPixels[destIndex] & 0xff_00_ff_ff
+                    destPixels[destIndex] = destPixels[destIndex] | (destBlueVal << 16)
+                }
+            }
+        }
+        
+        let resultImage = CGBitmapContextCreateImage(destContext)
+        return resultImage!
     }
 }
 

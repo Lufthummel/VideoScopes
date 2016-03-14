@@ -44,7 +44,7 @@ class ImageReciever: NSObject, NSStreamDelegate {
             iStream!.read(&sizeBuffer, maxLength: 4)
             let ptr = UnsafeMutablePointer<UInt32>(sizeBuffer)
             let num : UInt32 = ptr.memory
-            size =  min(Int(num),250_000)
+            size =  min(Int(num),350_000)
             print("expecting image with size : \(size)")
             
             readingSize = false
