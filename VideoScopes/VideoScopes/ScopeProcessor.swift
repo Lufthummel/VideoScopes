@@ -97,8 +97,8 @@ private class HistogramProcessor: ScopeProcessor {
         CGContextDrawImage(context, CGRect(x: 0, y: 0, width: w, height: h), cgImg)
         
         let pixCount = pixels.count
+
         
-        let date = NSDate()
         var arrRed = colorArrays[0]
         if rRed {
             for var i = 0; i < pixCount; i++ {
@@ -106,7 +106,6 @@ private class HistogramProcessor: ScopeProcessor {
                 arrRed[Int(r)]++
             }
         }
-        print(date.timeIntervalSinceNow)
         
         var arrGreen = colorArrays[1]
         if rGreen {

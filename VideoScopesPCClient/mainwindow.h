@@ -20,6 +20,7 @@ private:
     QPixmap pixmap;
     QTimer * timer;
     ImageSender * imageSender;
+    QPoint pointLocation, screenSize;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
