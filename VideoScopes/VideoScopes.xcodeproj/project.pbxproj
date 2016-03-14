@@ -16,6 +16,7 @@
 		CC48C6941C94FC30009F4B45 /* ScopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48C6931C94FC30009F4B45 /* ScopeView.swift */; };
 		CC48C6971C94FC7F009F4B45 /* VisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48C6961C94FC7F009F4B45 /* VisualizerView.swift */; };
 		CC48C6991C94FCAF009F4B45 /* ScopeProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48C6981C94FCAF009F4B45 /* ScopeProcessor.swift */; };
+		CCE200C61C975FC000404B22 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE200C51C975FC000404B22 /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CC48C6931C94FC30009F4B45 /* ScopeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeView.swift; sourceTree = "<group>"; };
 		CC48C6961C94FC7F009F4B45 /* VisualizerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualizerView.swift; sourceTree = "<group>"; };
 		CC48C6981C94FCAF009F4B45 /* ScopeProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeProcessor.swift; sourceTree = "<group>"; };
+		CCE200C51C975FC000404B22 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = ../Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		CC10C1311C93D512001B326C /* VideoScopes */ = {
 			isa = PBXGroup;
 			children = (
+				CCE200C51C975FC000404B22 /* Util.swift */,
 				CC10C1321C93D512001B326C /* AppDelegate.swift */,
 				CC10C1341C93D512001B326C /* ViewController.swift */,
 				CC48C6951C94FC3A009F4B45 /* ScopeViewUI */,
@@ -159,6 +162,7 @@
 				CC10C1451C93D51D001B326C /* ImageReciever.swift in Sources */,
 				CC10C1351C93D512001B326C /* ViewController.swift in Sources */,
 				CC48C6991C94FCAF009F4B45 /* ScopeProcessor.swift in Sources */,
+				CCE200C61C975FC000404B22 /* Util.swift in Sources */,
 				CC10C1331C93D512001B326C /* AppDelegate.swift in Sources */,
 				CC48C6941C94FC30009F4B45 /* ScopeView.swift in Sources */,
 			);

@@ -49,6 +49,7 @@ class ScopeView: UIView {
         processor = ScopeProcessor.getScopeProcessor(newMode)
         
         //update buttonView
+        buttonView?.changeToMode(newMode)
         
     }
     
@@ -60,7 +61,7 @@ class ScopeView: UIView {
                                                   width: frame.width - 2 * buttonSpace,
                                                  height: frame.height - 2 * buttonSpace))
         buttonView = ButtonView(frame: CGRect(x: 0, y: frame.height - buttonSpace, width: frame.width, height: buttonSpace),
-            mode: ScopeMode.Vectorscope)
+            mode: ScopeMode.Abstract)
         addSubview(visualizerView!)
         addSubview(buttonView!)
         visualizerView?.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +69,7 @@ class ScopeView: UIView {
         
         
         //VISUALIZER VIEW ================================================
-        visualizerView?.backgroundColor = UIColor.blueColor()
+        visualizerView?.backgroundColor = UIColor.blackColor()
         
         visualizerView?.topAnchor.constraintEqualToAnchor(topAnchor).active = true
         visualizerView?.bottomAnchor.constraintEqualToAnchor(buttonView?.topAnchor).active = true
@@ -83,8 +84,7 @@ class ScopeView: UIView {
         buttonView?.bottomAnchor.constraintEqualToAnchor(bottomAnchor).active = true
         buttonView?.heightAnchor.constraintEqualToConstant(buttonSpace).active = true
         
-        //PROCESSOR ======================================================
-        changeMode(.Vectorscope)
+        changeMode(.Histogram)
     }
     
     func updateImage(image : UIImage) {
@@ -102,16 +102,23 @@ class ScopeView: UIView {
 
 class ButtonView: UIView {
     
+    let buttonColor = UIColor(red: 0.75, green: 1.0, blue: 0.5, alpha: 1.0)
+    let borderColor = UIColor.whiteColor()
+    let ctrlState = UIControlState.Normal
+    
     var selectionButton : UIButton = UIButton()
     var paramButtons : [UIButton] = []
     
     init(frame: CGRect, mode: ScopeMode) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.orangeColor()
+        self.backgroundColor = UIColor.blackColor()
+        self.layer.borderColor = borderColor.CGColor
+        self.layer.borderWidth = 1.0
         
         //chooser button
         selectionButton = UIButton(type: UIButtonType.InfoLight)
+        selectionButton.tintColor = buttonColor
         
         selectionButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(selectionButton)
@@ -128,6 +135,46 @@ class ButtonView: UIView {
     }
     
     func changeToMode(mode : ScopeMode) {
+        
+        for button in paramButtons {
+            button.removeFromSuperview()
+        }
+        paramButtons.removeAll()
+        
+        switch mode {
+        case ScopeMode.Histogram :
+            setupHistogramButtons()
+        case _ :
+            true
+        }
+    }
+    
+    //PRECONDITION : there are no param buttons in the view
+    func setupHistogramButtons() {
+        
+        print("setup")
+        
+        //order [L R G B]
+        for i in 0..<4 {
+            let button = UIButton(type: UIButtonType.System)
+            
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            let buttonStrs = ["B","G","R","L"]
+            button.setTitle(buttonStrs[i], forState: UIControlState.Normal)
+            button.tintColor = buttonColor
+            
+            addSubview(button)
+            
+            button.rightAnchor.constraintEqualToAnchor(rightAnchor,
+                constant: buttonSmallSpace - buttonSmallSpace - CGFloat(i) * (buttonSpace + buttonSmallSpace)).active = true
+            button.bottomAnchor.constraintEqualToAnchor(bottomAnchor).active = true
+            button.topAnchor.constraintEqualToAnchor(topAnchor).active = true
+            button.widthAnchor.constraintEqualToConstant(buttonSpace).active = true
+            
+            paramButtons.append(button)
+        }
+        
         
     }
     
