@@ -47,7 +47,7 @@ void MainWindow::captureShot() {
                                                Qt::KeepAspectRatio,
                                                Qt::SmoothTransformation));
 
-        QImage img =  pixmap.scaled(QSize(800,600),
+        QImage img =  pixmap.scaled(QSize(400,200),
                                     Qt::KeepAspectRatio,
                                     Qt::SmoothTransformation).toImage();
 

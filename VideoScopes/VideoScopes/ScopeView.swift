@@ -18,7 +18,7 @@ enum ParameterName : UInt8 {
 }
 
 struct Parameter {
-    let list : [UInt8]
+    var list : [UInt8]
     let item : UInt8
     let floNum : Float
 }
@@ -63,9 +63,7 @@ class ScopeView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
                                                   width: frame.width - 2 * buttonSpace,
                                                  height: frame.height - 2 * buttonSpace))
         buttonView = ButtonView(frame: CGRect(x: 0, y: frame.height - buttonSpace, width: frame.width, height: buttonSpace),
-            mode: ScopeMode.Abstract) {
-                self.toggleModeChooser()
-        }
+            mode: ScopeMode.Abstract, chooseModeCallback: toggleModeChooser, toggleChannelCallback: toggleChannel)
         addSubview(visualizerView!)
         addSubview(buttonView!)
         visualizerView?.translatesAutoresizingMaskIntoConstraints = false
@@ -92,8 +90,12 @@ class ScopeView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func updateImage(image : UIImage) {
-        let scopeImg = processor.getScopeImage(image, params: [:])
-        visualizerView?.display(scopeImg, params: [ .ScaleParam : Parameter(list: [], item: 0, floNum: 1.0) ])
+        
+        let scopeImg = processor.getScopeImage(image, params: parameters)
+        
+        let params : ParameterMap = [:]
+        
+        visualizerView?.display(scopeImg, params: params)
     }
     
     // DISPLAY MODE PICKER ========================================
@@ -117,6 +119,28 @@ class ScopeView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         return ret
     }()
     var isDisplayingPicker : Bool = false
+    
+    //TODO make thread safe
+    func toggleChannel(channel : ColorChannel) {
+        print("toggle channel \(channel)")
+        
+        if var param = parameters[.ColorChannelParam] {
+            var found = false
+            for var i = 0; i < param.list.count; i++ {
+                if param.list[i] == channel.rawValue {
+                    param.list.removeAtIndex(i)
+                    found = true
+                    break
+                }
+            }
+            if !found {
+                param.list.append(channel.rawValue)
+            }
+            parameters[.ColorChannelParam] = param
+        } else {
+            parameters[.ColorChannelParam] = Parameter(list: [channel.rawValue], item: 0, floNum: 0)
+        }
+    }
     
     func toggleModeChooser() {
         if isDisplayingPicker {
@@ -167,19 +191,27 @@ class ScopeView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
 
 }
 
+
+
+enum ButtonTag : Int {
+    case ChooseTag, LumaTag, RedTag, GreenTag, BlueTag
+}
+
 class ButtonView: UIView {
     
     let buttonColor = UIColor(red: 0.75, green: 1.0, blue: 0.5, alpha: 1.0)
     let borderColor = UIColor.whiteColor()
     let ctrlState = UIControlState.Normal
     let chooseScopeMode : ((Void) -> Void)
+    let toggleChannel : ((ColorChannel)->Void)
     
     var selectionButton : UIButton = UIButton()
     var paramButtons : [UIButton] = []
     
-    init(frame: CGRect, mode: ScopeMode, chooseModeCallback : ()->Void ) {
+    init(frame: CGRect, mode: ScopeMode, chooseModeCallback : ()->Void, toggleChannelCallback : ((ColorChannel)->Void)) {
         
         chooseScopeMode = chooseModeCallback
+        toggleChannel = toggleChannelCallback
         
         super.init(frame: frame)
         
@@ -190,7 +222,7 @@ class ButtonView: UIView {
         //chooser button
         selectionButton = UIButton(type: UIButtonType.InfoLight)
         selectionButton.tintColor = buttonColor
-        selectionButton.addTarget(self, action: "chooseScope", forControlEvents: UIControlEvents.TouchUpInside)
+        selectionButton.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         
         selectionButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(selectionButton)
@@ -199,11 +231,26 @@ class ButtonView: UIView {
         selectionButton.bottomAnchor.constraintEqualToAnchor(bottomAnchor).active = true
         selectionButton.widthAnchor.constraintEqualToConstant(buttonSpace)
         
+        selectionButton.tag = ButtonTag.ChooseTag.rawValue
+        
         changeToMode(mode)
     }
     
-    func chooseScope() {
-        chooseScopeMode()
+    func buttonPressed(sender : UIButton) {
+        switch sender.tag {
+        case ButtonTag.ChooseTag.rawValue :
+            chooseScopeMode()
+        case ButtonTag.RedTag.rawValue :
+            toggleChannel(ColorChannel.Red)
+        case ButtonTag.BlueTag.rawValue :
+            toggleChannel(ColorChannel.Blue)
+        case ButtonTag.GreenTag.rawValue :
+            toggleChannel(ColorChannel.Green)
+        case ButtonTag.LumaTag.rawValue :
+            toggleChannel(ColorChannel.Luma)
+        case _ :
+            true
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -219,14 +266,16 @@ class ButtonView: UIView {
         
         switch mode {
         case ScopeMode.Histogram :
-            setupHistogramButtons()
+            setupHistogramWaveformButtons()
+        case ScopeMode.Waveform :
+            setupHistogramWaveformButtons()
         case _ :
             true
         }
     }
     
     //PRECONDITION : there are no param buttons in the view
-    func setupHistogramButtons() {
+    func setupHistogramWaveformButtons() {
         
         print("setup")
         
@@ -238,6 +287,22 @@ class ButtonView: UIView {
             
             let buttonStrs = ["B","G","R","L"]
             button.setTitle(buttonStrs[i], forState: UIControlState.Normal)
+            
+            switch i {
+            case 0:
+                button.tag = ButtonTag.BlueTag.rawValue
+            case 1:
+                button.tag = ButtonTag.GreenTag.rawValue
+            case 2:
+                button.tag = ButtonTag.RedTag.rawValue
+            case 3:
+                button.tag = ButtonTag.LumaTag.rawValue
+            case _ :
+                button.tag = 0xff
+            }
+            
+            button.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+            
             button.tintColor = buttonColor
             
             addSubview(button)

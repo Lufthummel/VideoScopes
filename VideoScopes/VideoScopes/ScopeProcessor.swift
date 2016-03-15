@@ -9,6 +9,7 @@
 import UIKit
 
 enum ScopeMode : UInt8 {
+    
     case Abstract, Histogram, Waveform, Vectorscope
     
     static func modeForName(name: String) -> ScopeMode {
@@ -42,9 +43,11 @@ enum ScopeMode : UInt8 {
     }
 }
 
+
 enum ColorChannel : UInt8 {
     case Red, Green, Blue, Luma
 }
+
 
 class ScopeProcessor: NSObject {
     
@@ -69,16 +72,17 @@ class ScopeProcessor: NSObject {
         mode = .Abstract
     }
     
-    func getScopeImage(image : UIImage, params : [String:Int]) -> UIImage {
+    func getScopeImage(image : UIImage, params : ParameterMap) -> UIImage {
         return image
     }
 }
+
 
 private class VectorscopeProcessor : ScopeProcessor {
     var destWidth : Int = 800
     var destHeight : Int = 600
     
-    private override func getScopeImage(image: UIImage, params: [String : Int]) -> UIImage {
+    private override func getScopeImage(image: UIImage, params: ParameterMap) -> UIImage {
         guard let cgImg = image.CGImage else {
             return image
         }
@@ -134,19 +138,38 @@ private class WaveformProcesor: ScopeProcessor {
     var destWidth : Int = 800
     var destHeight : Int = 600
     
-    private override func getScopeImage(image: UIImage, params: [String : Int]) -> UIImage {
+    private override func getScopeImage(image: UIImage, params: ParameterMap) -> UIImage {
+        
+        //TODO combine this simmilar code into a superclass function
         
         guard let cgImg = image.CGImage else {
             return UIImage()
         }
         
-        let resImg = readAndDrawWaveform(cgImg, channels: [.Red,.Green,.Blue])
+        var channels : [ColorChannel] = []
+        if let colorParam = params[ParameterName.ColorChannelParam] {
+            if colorParam.list.contains(ColorChannel.Red.rawValue) {
+                channels.append(.Red)
+            }
+            if colorParam.list.contains(ColorChannel.Green.rawValue) {
+                channels.append(.Green)
+            }
+            if colorParam.list.contains(ColorChannel.Blue.rawValue) {
+                channels.append(.Blue)
+            }
+            if colorParam.list.contains(ColorChannel.Luma.rawValue) {
+                channels.append(.Luma)
+            }
+        }
+        
+        let resImg = readAndDrawWaveform(cgImg, channels: channels)
         return UIImage(CGImage: resImg)
     }
     
     private func readAndDrawWaveform(cgImg : CGImage, channels : [ColorChannel]) -> CGImage {
         
         var (rRed,rGreen,rBlue,rLuma) = (false,false,false,false)
+        
         for channel in channels {
             switch channel {
             case .Red:
@@ -241,12 +264,28 @@ private class HistogramProcessor: ScopeProcessor {
     var width : Int = 800
     var height : Int = 600
     
-    private override func getScopeImage(image: UIImage, params: [String : Int]) -> UIImage {
+    private override func getScopeImage(image: UIImage, params: ParameterMap) -> UIImage {
         guard let cgImg = image.CGImage else {
             return UIImage()
         }
         
-        let arr = readImgValues(cgImg, channels: [.Red, .Green, .Blue])
+        var channels : [ColorChannel] = []
+        if let colorParam = params[ParameterName.ColorChannelParam] {
+            if colorParam.list.contains(ColorChannel.Red.rawValue) {
+                channels.append(.Red)
+            }
+            if colorParam.list.contains(ColorChannel.Green.rawValue) {
+                channels.append(.Green)
+            }
+            if colorParam.list.contains(ColorChannel.Blue.rawValue) {
+                channels.append(.Blue)
+            }
+            if colorParam.list.contains(ColorChannel.Luma.rawValue) {
+                channels.append(.Luma)
+            }
+        }
+        
+        let arr = readImgValues(cgImg, channels: channels)
         let resCgImg = drawHistogram(arr)
         
         return UIImage(CGImage: resCgImg)
