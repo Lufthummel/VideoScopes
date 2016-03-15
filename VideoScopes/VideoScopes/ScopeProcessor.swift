@@ -10,6 +10,36 @@ import UIKit
 
 enum ScopeMode : UInt8 {
     case Abstract, Histogram, Waveform, Vectorscope
+    
+    static func modeForName(name: String) -> ScopeMode {
+        switch name {
+        case "Histogram" :
+            return .Histogram
+        case "Waveform" :
+            return .Waveform
+        case "Vectorscope" :
+            return .Vectorscope
+        case _ :
+            return .Abstract
+        }
+    }
+    
+    static func listOfNames() -> [String] {
+        return ["Abstract","Histogram","Waveform","Vectorscope"]
+    }
+    
+    func name() -> String {
+        switch self {
+        case .Histogram :
+            return "Histogram"
+        case .Waveform :
+            return "Waveform"
+        case .Vectorscope :
+            return "Vectorscope"
+        case .Abstract :
+            return "Abstract"
+        }
+    }
 }
 
 enum ColorChannel : UInt8 {
@@ -127,8 +157,6 @@ private class WaveformProcesor: ScopeProcessor {
                 rBlue = true
             case .Luma:
                 rLuma = true
-            default:
-                true
             }
         }
         
@@ -242,8 +270,6 @@ private class HistogramProcessor: ScopeProcessor {
                 rBlue = true
             case .Luma:
                 rLuma = true
-            default:
-                 true
             }
         }
         

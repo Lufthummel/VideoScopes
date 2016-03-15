@@ -18,7 +18,6 @@ class VisualizerView: UIView {
         
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         
-        let margins = layoutMarginsGuide
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(imageView)
